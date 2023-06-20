@@ -1,0 +1,28 @@
+{
+  "name": "file-manager",
+  "version": "1.0.0",
+  "description": "File Manager",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "fm": "node src/index.js -- --username=master"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BrBrov/File-Manager.git"
+  },
+  "keywords": [
+    "File",
+    "Manager",
+    "RSSchool",
+    "Node",
+    "JS",
+    "Course"
+  ],
+  "author": "BrBrov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BrBrov/File-Manager/issues"
+  },
+  "homepage": "https://github.com/BrBrov/File-Manager#readme"
+}
