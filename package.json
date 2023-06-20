@@ -2,10 +2,11 @@
   "name": "file-manager",
   "version": "1.0.0",
   "description": "File Manager",
-  "main": "index.js",
+  "main": "file-manager.js",
   "type": "module",
   "scripts": {
-    "fm": "node src/index.js -- --username=master"
+    "start": "node src/file-manager.js",
+    "dev": "node src/file-manager.js -- --username=master"
   },
   "repository": {
     "type": "git",
