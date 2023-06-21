@@ -5,7 +5,7 @@ export default class CommanderInterface {
 
   getCommand(commandLine) {
     const command = commandLine[0];
-    if (this.commands.includes(command)) return null;
+    if (!this.commands.includes(command)) return null;
     this.commandsHandler(commandLine);
   }
 }

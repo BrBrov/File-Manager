@@ -25,7 +25,7 @@ export default class STDInput {
   }
 
   #exitApp() {
-    console.log(`Thank you for using File Manager, ${this.userName}, goodbye!`);
-    process.exit();
+    console.log(`\n\nThank you for using File Manager, ${this.userName}, goodbye!\n\n`);
+    process.exit(0);
   }
 }

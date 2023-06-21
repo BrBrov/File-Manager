@@ -1,9 +1,9 @@
 import CommanderInterface from "../data/commander-interface.js";
-import { navigation } from "../data/commands.js";
+import { allCommands } from "../data/commands.js";
 
 export default class FSNavigation extends CommanderInterface{
   constructor(state) {
-    super(navigation);
+    super(allCommands.navigation);
     this.state = state;
   }
 

@@ -1,11 +1,8 @@
 import { EventEmitter } from 'node:events';
 import FSNavigation from './navigation.js';
+import CommandParser from '../utils/command-parser.js';
 
-class EventCommandInterface extends EventEmitter {
-  constructor(osInfo) {
-    super();
-  }
-}
+class EventCommandInterface extends EventEmitter {}
 
 export default class EventCommander {
   constructor(osInfo) {
@@ -19,10 +16,10 @@ export default class EventCommander {
   #setEvents() {
     this.emitter.on('navigate', (commandLine) => console.log(commandLine));
     this.emitter.on('fileschange', (commandLine) => console.log(commandLine));
-    this.emitter.on('information', (commandLine) => console.log(commandLine));
+    this.emitter.on('information', (commandLine, osInfoHandler) => osInfoHandler.processCommand(commandLine));
     this.emitter.on('hash', (commandLine) => console.log(commandLine));
     this.emitter.on('archive', (commandLine) => console.log(commandLine));
-    this.emitter.on('oncommand', (commandLine) => console.log(commandLine));
+    this.emitter.on('oncommand', (commandLine) => new CommandParser(commandLine, this.emitter, this.osInfo));
   }
 
   getCurrentUser() {

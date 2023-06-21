@@ -1,8 +1,6 @@
 import os from 'node:os';
 import path from 'node:path';
 
-const { log, table} = console;
-
 export default class State {
   #fsPosition;
   
