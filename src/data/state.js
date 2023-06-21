@@ -5,6 +5,8 @@ export default class State {
   #fsPosition;
   
   constructor(nameOfCurrentUser) {
+    this.osSeparator = path.sep;
+
     this.eol = os.EOL;
     
     this.cpus = os.cpus();

@@ -14,7 +14,7 @@ export default class EventCommander {
   }
 
   #setEvents() {
-    this.emitter.on('navigate', (commandLine) => console.log(commandLine));
+    this.emitter.on('navigate', (commandLine, navigate) => navigate.processCommand(commandLine));
     this.emitter.on('fileschange', (commandLine) => console.log(commandLine));
     this.emitter.on('information', (commandLine, osInfoHandler) => osInfoHandler.processCommand(commandLine));
     this.emitter.on('hash', (commandLine) => console.log(commandLine));
