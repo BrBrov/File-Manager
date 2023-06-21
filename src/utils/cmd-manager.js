@@ -1,6 +1,6 @@
 import State from '../data/state.js';
-import EventCommander from '../handlers/commandHandler.js';
-import STDInput from './stdInput.js';
+import EventCommander from '../handlers/command-handler.js';
+import STDInput from './std-input.js';
 
 export default class CMDManager {
   constructor(userName) {

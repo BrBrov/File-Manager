@@ -1,5 +1,5 @@
-import UserParams from './utils/userName.js';
-import CMDManager from './utils/cmdManager.js';
+import UserParams from './utils/user-name.js';
+import CMDManager from './utils/cmd-manager.js';
 
 class FileManager {
   constructor() {

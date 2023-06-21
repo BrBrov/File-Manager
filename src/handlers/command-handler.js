@@ -1,6 +1,5 @@
 import { EventEmitter } from 'node:events';
-import FSNavigation from '../handlers/navigation.js';
-import STDInput from '../utils/stdInput.js';
+import FSNavigation from './navigation.js';
 
 class EventCommandInterface extends EventEmitter {
   constructor(osInfo) {

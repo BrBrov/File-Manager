@@ -1,12 +1,15 @@
 import os from 'node:os';
 import path from 'node:path';
 
+const { log, table} = console;
+
 export default class State {
   #fsPosition;
+  
   constructor(nameOfCurrentUser) {
     this.eol = os.EOL;
     
-    this.cpus = this.#getCPUsInfo();
+    this.cpus = os.cpus();
 
     this.homedir = os.homedir();
 
@@ -17,27 +20,6 @@ export default class State {
     this.currentUser = nameOfCurrentUser;
 
     this.setFSPosition(this.homedir);
-
-  }
-
-  #getCPUsInfo() {
-    const cpus = os.cpus();
-
-    const cores = cpus.length;
-
-    const cpusInfo = {
-      'coresCount': cores
-    };
-
-    cpus.forEach((info, index) => {
-      const infoOfOneCore = {
-        model: info.model,
-        speed: info.speed
-      }
-      cpusInfo[`core ${index + 1}`] = infoOfOneCore;
-    });
-
-    return cpusInfo;
   }
 
   getCurrentUser() {
@@ -52,5 +34,4 @@ export default class State {
   getFSPosition() {
     return this.#fsPosition;
   }
-
 }

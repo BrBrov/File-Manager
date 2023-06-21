@@ -1,5 +1,4 @@
-import { stdout } from 'node:process';
-import CommanderInterface from "../data/commanderInterface.js";
+import CommanderInterface from "../data/commander-interface.js";
 import { navigation } from "../data/commands.js";
 
 export default class FSNavigation extends CommanderInterface{
