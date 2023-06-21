@@ -15,7 +15,7 @@ export default class CommandsParser {
   parse(commandLine) {
     const stringArrLine = commandLine.split(' ');
 
-    if (stringArrLine.length === 0) return this.#outputError('Command line is empty!');
+    if (stringArrLine.length === 0 || !stringArrLine[0]) return this.#outputError('Command line is empty! Enter your command or enter help to look at commands cheatsheet.');
 
     if (stringArrLine.length > 3) return this.#outputError(`Wrong entered command!`);
 
