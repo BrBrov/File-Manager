@@ -1,9 +1,8 @@
 import os from 'node:os';
-import url from 'node:url';
 import path from 'node:path';
 
 export default class State {
-  #dirname
+  #fsPosition;
   constructor(nameOfCurrentUser) {
     this.eol = os.EOL;
     
@@ -17,9 +16,8 @@ export default class State {
 
     this.currentUser = nameOfCurrentUser;
 
-    this.#getCurrentFolder();
+    this.setFSPosition(this.homedir);
 
-    this.cwdText = `PS ${this.#dirname}`;
   }
 
   #getCPUsInfo() {
@@ -42,21 +40,17 @@ export default class State {
     return cpusInfo;
   }
 
-  #getCurrentFolder() {
-    const filename = url.fileURLToPath(import.meta.url);
-    this.#dirname = path.dirname(filename);
-  }
-
   getCurrentUser() {
     return this.currentUser;
   }
 
-  getDirname() {
-    return this.#dirname;
+  setFSPosition(position) {
+    const normalizePos = path.normalize(position);
+    this.#fsPosition = path.resolve(normalizePos);
   }
 
-  unpdateCWDText(folder) {
-    this.cwdText = `PS ${this.#dirname}/` + folder; 
+  getFSPosition() {
+    return this.#fsPosition;
   }
 
 }

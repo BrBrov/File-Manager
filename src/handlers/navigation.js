@@ -2,10 +2,9 @@ import { stdout } from 'node:process';
 import CommanderInterface from "../data/commanderInterface.js";
 import { navigation } from "../data/commands.js";
 
-export default class Navigation extends CommanderInterface{
+export default class FSNavigation extends CommanderInterface{
   constructor(state) {
     super(navigation);
-
     this.state = state;
   }
 
@@ -14,10 +13,6 @@ export default class Navigation extends CommanderInterface{
     if (commandLine.length == 0 || commandLine.length > 2) {
       return null;
     }
-  }
-
-  ls(commandLine) {
-    
   }
 
 }
