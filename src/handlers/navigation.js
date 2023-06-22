@@ -1,6 +1,11 @@
+import path from 'node:path';
+import * as fs from 'node:fs/promises';
+
 import CommanderInterface from "../data/commander-interface.js";
 import EndOfOperation from '../utils/end-of-operation.js';
 import { allCommands } from "../data/commands.js";
+import UpExec from '../executors/up.js';
+import CdExec from '../executors/cd.js';
 
 export default class FSNavigation extends CommanderInterface {
   constructor(state) {
@@ -20,11 +25,16 @@ export default class FSNavigation extends CommanderInterface {
         if (commandArr[1]) {
           this.#showError('Icorrect entered command \'up\'!');
         } else {
-          this.#up();
+          new UpExec(this.state);
         }
         break;
       case this.commands[1]:
         //TODO: cd command
+        if (!commandArr[1] || commandArr.length > 2) {
+          this.#showError('Icorrect entered command \'cd\'!');
+        } else {
+          new CdExec(commandArr[1], this.state);
+        }
         break;
       case this.commands[2]:
         //TODO: ls command
@@ -39,21 +49,6 @@ export default class FSNavigation extends CommanderInterface {
     if (super.checkCommand(commandArr)) {
       this.commandsHandler(commandArr);
     }
-  }
-
-  #up() {
-    const currentPath = this.state.getFSPosition();
-    let curPathArr = currentPath.split(this.state.osSeparator);
-
-    if (curPathArr.length === 1) {
-      return this.endOfOperation.endOperation();
-    }
-    
-    curPathArr = curPathArr.slice(0, -1);
-
-    this.state.setFSPosition(curPathArr.join(this.state.osSeparator));
-
-    this.endOfOperation.endOperation();
   }
 
   #showError(errorText) {
