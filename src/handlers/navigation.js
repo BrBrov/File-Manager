@@ -6,6 +6,7 @@ import EndOfOperation from '../utils/end-of-operation.js';
 import { allCommands } from "../data/commands.js";
 import UpExec from '../executors/up.js';
 import CdExec from '../executors/cd.js';
+import LsExec from '../executors/ls.js';
 
 export default class FSNavigation extends CommanderInterface {
   constructor(state) {
@@ -29,7 +30,6 @@ export default class FSNavigation extends CommanderInterface {
         }
         break;
       case this.commands[1]:
-        //TODO: cd command
         if (!commandArr[1] || commandArr.length > 2) {
           this.#showError('Icorrect entered command \'cd\'!');
         } else {
@@ -37,7 +37,11 @@ export default class FSNavigation extends CommanderInterface {
         }
         break;
       case this.commands[2]:
-        //TODO: ls command
+        if (commandArr.length > 1) {
+          this.#showError('Icorrect entered command \'ls\'!');
+        } else {
+          new LsExec(this.state);
+        }
         break;
       default:
         this.#showError('Unknown command!');

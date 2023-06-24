@@ -8,7 +8,6 @@ export default class EventCommander {
   constructor(osInfo) {
     this.osInfo = osInfo;
     this.navigation = new FSNavigation(this.osInfo);
-    //TODO: add others handlers
     this.emitter = new EventCommandInterface();
     this.#setEvents();
   }
