@@ -1,3 +1,5 @@
+import path from 'node:path';
+
 import { allCommands } from '../data/commands.js';
 import EndOfOperation from './end-of-operation.js';
 import OSInformation from '../handlers/information.js';
@@ -15,9 +17,8 @@ export default class CommandsParser {
   parse(commandLine) {
     const stringArrLine = commandLine.split(' ');
 
-    if (stringArrLine.length === 0 || !stringArrLine[0]) return this.#outputError('Command line is empty! Enter your command or enter help to look at commands cheatsheet.');
 
-    if (stringArrLine.length > 3) return this.#outputError(`Wrong entered command!`);
+    if (stringArrLine.length === 0 || !stringArrLine[0]) return this.#outputError('Command line is empty! Enter your command or enter help to look at commands cheatsheet.');
 
     console.log(stringArrLine); //TODO: delete it after dev!
 
@@ -28,6 +29,12 @@ export default class CommandsParser {
     if (allCommands.navigation.includes(stringArrLine[0])) {
       return this.emitter.emit('navigate', stringArrLine, new FSNavigation(this.osInfo));
     }
+
+    if (allCommands.hash.includes(stringArrLine[0])) {
+      return this.emitter.emit('hash', stringArrLine);
+    }
+
+    this.#outputError('Entered command is wrong!');
   }
 
   #outputError(stringError) {

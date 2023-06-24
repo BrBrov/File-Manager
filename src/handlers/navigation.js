@@ -1,6 +1,3 @@
-import path from 'node:path';
-import * as fs from 'node:fs/promises';
-
 import CommanderInterface from "../data/commander-interface.js";
 import EndOfOperation from '../utils/end-of-operation.js';
 import { allCommands } from "../data/commands.js";
@@ -52,6 +49,8 @@ export default class FSNavigation extends CommanderInterface {
   processCommand(commandArr) {
     if (super.checkCommand(commandArr)) {
       this.commandsHandler(commandArr);
+    } else {
+      this.#showError(`Somthing went wront with \'${commandArr[0]}\'`);
     }
   }
 
