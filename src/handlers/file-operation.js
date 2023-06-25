@@ -2,6 +2,7 @@ import { allCommands } from '../data/commands.js';
 import CommanderInterface from '../data/commander-interface.js';
 import EndOfOperation from '../utils/end-of-operation.js';
 import CatExec from '../executors/cat.js';
+import AddExec from '../executors/add.js';
 
 export default class FileOperation extends CommanderInterface {
   constructor(osInfo) {
@@ -18,6 +19,7 @@ export default class FileOperation extends CommanderInterface {
         break;
       case 'add':
         //TODO: add
+        new AddExec(this.state, commandLine);
         break;
       case '':
         //TODO: rename
