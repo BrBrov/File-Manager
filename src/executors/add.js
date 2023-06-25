@@ -20,14 +20,21 @@ export default class AddExec {
 
     const fileName = commandPath.slice(commandPath.lastIndexOf(separator) + 1);
 
-    fs.appendFile(pathToDestination, '')
-    .then(() => {
-      this.endOfOperation.outputInfo(`File ${fileName} created`);
-    })
-    .catch(() => {
-      this.endOfOperation.outputInfo(`Operation failed!`);
-    })
-    .finally(() => this.endOfOperation.endOperation());
+    fs.open(pathToDestination)
+      .then(() => {
+        this.endOfOperation.outputInfo(`Operation failed! File already exists.`);
+        this.endOfOperation.endOperation();
+      })
+      .catch(() => {
+        fs.appendFile(pathToDestination, '')
+          .then(() => {
+            this.endOfOperation.outputInfo(`File ${fileName} created`);
+          })
+          .catch(() => {
+            this.endOfOperation.outputInfo(`Operation failed!`);
+          })
+          .finally(() => this.endOfOperation.endOperation());
+      })
   }
 
   #detectSeparator(commandLine) {
