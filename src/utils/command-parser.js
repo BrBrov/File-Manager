@@ -2,7 +2,7 @@ import path from 'node:path';
 
 import { allCommands } from '../data/commands.js';
 import EndOfOperation from './end-of-operation.js';
-import OSInformation from '../handlers/information.js';
+
 import FSNavigation from '../handlers/navigation.js';
 
 
@@ -23,15 +23,19 @@ export default class CommandsParser {
     console.log(stringArrLine); //TODO: delete it after dev!
 
     if(stringArrLine[0] === 'os') {
-      return this.emitter.emit('information', commandLine, new OSInformation(this.osInfo));
+      return this.emitter.emit('information', commandLine);
     }
     
     if (allCommands.navigation.includes(stringArrLine[0])) {
-      return this.emitter.emit('navigate', stringArrLine, new FSNavigation(this.osInfo));
+      return this.emitter.emit('navigate', stringArrLine);
     }
 
     if (allCommands.hash.includes(stringArrLine[0])) {
       return this.emitter.emit('hash', stringArrLine);
+    }
+
+    if (allCommands.fileOperation.includes(stringArrLine[0])) {
+      return this.emitter.emit('fileschange', stringArrLine);
     }
 
     this.#outputError('Entered command is wrong!');

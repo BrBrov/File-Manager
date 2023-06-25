@@ -1,6 +1,8 @@
 import { EventEmitter } from 'node:events';
+import OSInformation from '../handlers/information.js';
 import FSNavigation from './navigation.js';
 import Hash from './hash.js';
+import FileOperation from './file-operation.js';
 import CommandParser from '../utils/command-parser.js';
 
 class EventCommandInterface extends EventEmitter {}
@@ -14,8 +16,8 @@ export default class EventCommander {
 
   #setEvents() {
     this.emitter.on('navigate', (commandLine) => new FSNavigation(this.osInfo).processCommand(commandLine));
-    this.emitter.on('fileschange', (commandLine) => console.log(commandLine));
-    this.emitter.on('information', (commandLine, osInfoHandler) => osInfoHandler.processCommand(commandLine));
+    this.emitter.on('fileschange', (commandLine) => new FileOperation(this.osInfo).processCommand(commandLine));
+    this.emitter.on('information', (commandLine) => new OSInformation(this.osInfo).processCommand(commandLine));
     this.emitter.on('hash', (commandLine) => new Hash(this.osInfo).processCommand(commandLine));
     this.emitter.on('archive', (commandLine) => console.log(commandLine));
     this.emitter.on('oncommand', (commandLine) => new CommandParser(commandLine, this.emitter, this.osInfo));
