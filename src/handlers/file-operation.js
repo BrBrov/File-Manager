@@ -5,6 +5,8 @@ import CatExec from '../executors/cat.js';
 import AddExec from '../executors/add.js';
 import RnExec from '../executors/rn.js';
 import CpExec from '../executors/cp.js';
+import MvExec from '../executors/mv.js';
+import RmExec from '../executors/rm.js';
 
 export default class FileOperation extends CommanderInterface {
   constructor(osInfo) {
@@ -28,12 +30,13 @@ export default class FileOperation extends CommanderInterface {
         new CpExec(commandLine, this.state);
         break;
       case 'mv':
-        //TODO: move file
+        new MvExec(commandLine, this.state);
         break;
       case 'rm':
-        //TODO: delete
+        new RmExec(commandLine, this.state);
         break;
       default:
+        this.#showError('Invalid input');
         break;
     }
   }
