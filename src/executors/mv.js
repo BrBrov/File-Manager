@@ -16,7 +16,7 @@ export default class MvExec extends DeepParse {
   }
 
   #mv(commandLine) {
-    //[ 'mv', '/folder/my', 'file.txt' ]
+
     const separator = this.getSeparator(commandLine);
 
     const ways = this.parse(commandLine, separator);

@@ -24,7 +24,7 @@ export default class CdExec {
       this.state.setFSPosition(newPositionPath);
       dir.close();
     } catch (e) {
-      this.endOfOperation.outputInfo('The folder path does not exist. Check if the path is correct.');
+      this.endOfOperation.outputInfo('Operation failed.\nThe folder path does not exist.\nCheck if the path is correct.');
     } finally {
       this.endOfOperation.endOperation();
     }

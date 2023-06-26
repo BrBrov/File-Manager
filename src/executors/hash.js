@@ -34,6 +34,7 @@ export default class HashExec {
         }
       })
       .then(() => {
+        showProcess.stop();
         this.endOfOperation.endOperation();
         process.stdin.resume();
       })

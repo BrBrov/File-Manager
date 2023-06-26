@@ -11,8 +11,7 @@ export default class RmExec {
   }
 
   #rm(commandLine) {
-    //TODO
-    //[ 'rm', '/folder/my', 'file.txt' ]
+
     const way = commandLine.slice(1).join(' ');
 
     let pathTofile;

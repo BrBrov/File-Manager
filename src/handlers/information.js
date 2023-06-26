@@ -41,7 +41,7 @@ export default class OSInformation {
       cpusInfo[`core ${index + 1}`] = infoOfOneCore;
     });
 
-    log(`Number of processor cores ${cores}\n\n`);
+    log(`\n\nNumber of processor cores ${cores}\n`);
     log('Cores information:');
     table(cpusInfo);
     log('\n');
@@ -78,7 +78,7 @@ export default class OSInformation {
         this.getARCH();
         break;
       default:
-        this.eofp.outputInfo(`Incorrect entered parameters os!`);
+        this.eofp.outputInfo(`Invalid input.\nIncorrect entered parameters os!`);
         this.eofp.endOperation();
         break;
     }

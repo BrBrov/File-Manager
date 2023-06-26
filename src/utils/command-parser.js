@@ -1,10 +1,5 @@
-import path from 'node:path';
-
 import { allCommands } from '../data/commands.js';
 import EndOfOperation from './end-of-operation.js';
-
-import FSNavigation from '../handlers/navigation.js';
-
 
 export default class CommandsParser {
   constructor(commandLine, emitter, osInfo) {
@@ -17,11 +12,7 @@ export default class CommandsParser {
   parse(commandLine) {
     const stringArrLine = commandLine.split(' ');
 
-
     if (stringArrLine.length === 0 || !stringArrLine[0]) return this.#outputError('Invalid input.\nCommand line is empty!');
-
-    // console.log(stringArrLine);
-    //TODO: delete it after dev!
 
     if(stringArrLine[0] === 'os') {
       return this.emitter.emit('information', commandLine);
@@ -47,6 +38,5 @@ export default class CommandsParser {
     endOperation.outputInfo(stringError);
     endOperation.endOperation();
   }
-
 }
 

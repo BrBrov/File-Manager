@@ -17,7 +17,7 @@ export default class RnExec {
     const waysObject = this.#parseLine(commandLine);
 
     if (!waysObject.isData) {
-      return this.#showError(`${waysObject.result} \nCheck the spelling of the file paths\nExample: rn /folder/old_name.ext "new_name.ext"`);
+      return this.#showError(`Invalid input.\n${waysObject.result} \nCheck the spelling of the file paths\nExample: rn /folder/old_name.ext "new_name.ext"`);
     }
 
     const from = path.join(currentPath, waysObject.result[0]);

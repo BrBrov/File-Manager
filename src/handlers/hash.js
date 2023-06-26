@@ -12,7 +12,7 @@ export default class Hash extends CommanderInterface {
 
   commandsHandler(commandArr) {
     if (commandArr.length > 2) {
-      this.#showError('Invalid entered command!');
+      this.#showError('Invalid input!');
     } else {
       new HashExec(commandArr, this.state);
     }
@@ -26,7 +26,7 @@ export default class Hash extends CommanderInterface {
     if (super.checkCommand(fullCommand)) {
       this.commandsHandler(fullCommand);
     } else {
-      this.#showError(`Somthing went wront with \'${commandArr[0]}\'`);
+      this.#showError(`Invalid input.\nSomthing went wront with \'${commandArr[0]}\'`);
     }
   }
 

@@ -22,7 +22,7 @@ export default class AddExec {
 
     fs.open(pathToDestination)
       .then(() => {
-        this.endOfOperation.outputInfo(`Operation failed! File already exists.`);
+        this.endOfOperation.outputInfo(`Operation failed.\nFile already exists.`);
         this.endOfOperation.endOperation();
       })
       .catch(() => {
