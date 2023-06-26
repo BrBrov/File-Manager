@@ -4,7 +4,7 @@ import * as fs from 'node:fs/promises';
 import EndOfOperation from '../utils/end-of-operation.js';
 
 export default class CatExec {
-  constructor(osInfo, commandLine) {
+  constructor(commandLine, osInfo) {
     this.state = osInfo;
     this.endOfOperation = new EndOfOperation(this.state);
     this.#cat(commandLine);

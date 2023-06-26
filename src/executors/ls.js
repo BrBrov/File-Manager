@@ -15,7 +15,7 @@ export default class LsExec {
   }
 
   async #ls() {
-    const { table, dir } = console;
+    const { table } = console;
     try {
       const arrDirent = await fs.readdir(this.state.getFSPosition(), {withFileTypes: true});
 
@@ -40,6 +40,7 @@ export default class LsExec {
       });
       
       table([...lsDirectory, ...lsFiles]);
+
     } catch(e) {
       this.endOfOperation.outputInfo(e.message);
     }

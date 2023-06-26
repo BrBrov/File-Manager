@@ -4,7 +4,7 @@ import path from 'node:path';
 import EndOfOperation from '../utils/end-of-operation.js';
 
 export default class AddExec {
-  constructor(osInfo, commandLine) {
+  constructor(commandLine, osInfo) {
     this.state = osInfo;
     this.endOfOperation = new EndOfOperation(this.state);
     this.#add(commandLine);
@@ -20,10 +20,11 @@ export default class AddExec {
 
     const fileName = commandPath.slice(commandPath.lastIndexOf(separator) + 1);
 
-    fs.open(pathToDestination)
-      .then(() => {
+    fs.open(pathToDestination, 'r+')
+      .then((fh) => {
         this.endOfOperation.outputInfo(`Operation failed.\nFile already exists.`);
         this.endOfOperation.endOperation();
+        fh.close();
       })
       .catch(() => {
         fs.appendFile(pathToDestination, '')

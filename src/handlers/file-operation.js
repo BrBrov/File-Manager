@@ -18,10 +18,10 @@ export default class FileOperation extends CommanderInterface {
   #commandsHandler(commandLine) {
     switch (commandLine[0]) {
       case 'cat':
-        new CatExec(this.state, commandLine);
+        new CatExec(commandLine, this.state);
         break;
       case 'add':
-        new AddExec(this.state, commandLine);
+        new AddExec(commandLine, this.state);
         break;
       case 'rn':
         new RnExec(commandLine, this.state);
