@@ -39,7 +39,7 @@ export default class CommandsParser {
       return this.emitter.emit('fileschange', stringArrLine);
     }
 
-    this.#outputError('INvalid input!');
+    this.#outputError('Invalid input!');
   }
 
   #outputError(stringError) {

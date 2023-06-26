@@ -1,20 +1,21 @@
-import * as fs from 'node:fs/promises';
 import path from 'node:path';
 import { Worker } from 'node:worker_threads';
 
+import DeepParse from '../utils/deep-parse.js';
 import EndOfOperation from '../utils/end-of-operation.js';
 import ShowProcessing from '../utils/show-process.js';
 
-export default class CpExec {
+export default class CpExec extends DeepParse {
   constructor(commandLine, osInfo) {
+    super();
     this.state = osInfo;
     this.endOfOperation = new EndOfOperation(this.state);
     this.#cp(commandLine);
   }
 
   #cp(commandLine) {
-    const separator = this.#getSeparator(commandLine)
-    const waysObject = this.#parse(commandLine, separator);
+    const separator = this.getSeparator(commandLine)
+    const waysObject = this.parse(commandLine, separator);
 
     if (!waysObject) {
       return this.#showError('Operation failed!\nCheck the spelling of the file paths\nExample: cp /folder/old_name.ext /folder/destination_folder');
@@ -52,50 +53,6 @@ export default class CpExec {
         this.endOfOperation.endOperation();
         process.stdin.resume();
       })
-  }
-
-  #parse(commandLine, separator) {
-    const pathArr = commandLine.slice(1).join(' ');
-
-    let from, to;
-    const pathRef = pathArr.split(` ${separator}`);
-
-    [from, to] = pathRef;
-
-    if (pathRef.length !== 2) {
-      if (/\s\w:(\/|\\)/.test(pathArr)) {
-        const index = pathArr.search(/\s\w:(\/|\\)/);
-        from = pathArr.slice(0, index);
-        to = pathArr.slice(index + 1);
-      } else {
-        return null;
-      }
-    }
-    
-    if(from.slice(0,1) !== separator) {
-      from = separator + from;
-    }
-
-    to = separator.concat(to);
-    return [from, to];
-  }
-
-  #getSeparator(commandLine) {
-    const pathArr = commandLine.slice(1).join(' ');
-
-    let separator = null;
-
-    if (pathArr.includes('/')) {
-      return '/';
-    }
-
-    if (pathArr.includes('\\')) {
-      return '\\';
-    }
-
-    if (!separator) {
-      return null;
-    }
   }
 
   #showError(string) {
