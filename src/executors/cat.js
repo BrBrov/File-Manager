@@ -12,18 +12,14 @@ export default class CatExec {
 
   #cat(commandLine) {
     const currentPosition = this.state.getFSPosition();
-    const pathToFile = path.resolve(currentPosition, commandLine[1]);
+
+    const pathFile = commandLine.slice(1).join(' ');
+
+    const pathToFile = path.resolve(currentPosition, pathFile);
     process.stdin.pause();
 
-    console.log(commandLine);
-
-    console.log(pathToFile);
-
-    const fStream = fs.readFile(pathToFile, { encoding: 'utf-8' });
-
-    fStream
+    fs.readFile(pathToFile, { encoding: 'utf-8' })
       .then((data) => {
-        this.outputInfo('')
         this.endOfOperation.outputInfo(data);
         this.endOfOperation.endOperation();
         process.stdin.resume();
