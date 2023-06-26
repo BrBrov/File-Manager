@@ -21,27 +21,27 @@ export default class FSNavigation extends CommanderInterface {
     switch (command) {
       case this.commands[0]:
         if (commandArr[1]) {
-          this.#showError('Invalid inpaut.\nIcorrect entered command \'up\'!');
+          this.#showError('Invalid input.\nIcorrect entered command \'up\'!');
         } else {
           new UpExec(this.state);
         }
         break;
       case this.commands[1]:
         if (!commandArr[1] || commandArr.length > 2) {
-          this.#showError('Invalid inpaut.\nIcorrect entered command \'cd\'!');
+          this.#showError('Invalid input.\nIcorrect entered command \'cd\'!');
         } else {
           new CdExec(commandArr[1], this.state);
         }
         break;
       case this.commands[2]:
         if (commandArr.length > 1) {
-          this.#showError('Invalid inpaut.\nIcorrect entered command \'ls\'!');
+          this.#showError('Invalid input.\nIcorrect entered command \'ls\'!');
         } else {
           new LsExec(this.state);
         }
         break;
       default:
-        this.#showError('Invalid inpaut.\nUnknown command!');
+        this.#showError('Invalid input.\nUnknown command!');
         break;
     }
   }
@@ -50,7 +50,7 @@ export default class FSNavigation extends CommanderInterface {
     if (super.checkCommand(commandArr)) {
       this.commandsHandler(commandArr);
     } else {
-      this.#showError(`Invalid inpaut.\nSomthing went wront with \'${commandArr[0]}\'`);
+      this.#showError(`Invalid input.\nSomthing went wront with \'${commandArr[0]}\'`);
     }
   }
 

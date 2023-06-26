@@ -45,7 +45,7 @@ export default class FileOperation extends CommanderInterface {
     if (this.checkCommand(commandLine)) {
       this.#commandsHandler(commandLine);
     } else {
-      this.#showError('Invalid command');
+      this.#showError('Invalid input');
     }
   }
 

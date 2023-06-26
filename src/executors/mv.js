@@ -52,19 +52,19 @@ export default class MvExec extends DeepParse {
         .then(() => {
           showProcess.stop();
           this.endOfOperation.outputInfo('Move was done!');
-          this.endOfOperation.endOperation();          
+          this.endOfOperation.endOperation();
           process.stdin.resume();
         })
         .catch(() => {
           showProcess.stop();
-          this.#showError(`Operation faled!\nCan\'t delete file!`);          
+          this.#showError(`Operation faled!\nCan\'t delete file!`);
           process.stdin.resume();
         });
       })
       .catch(() => {
         showProcess.stop();
         this.endOfOperation.outputInfo('Operation failed.');
-        this.endOfOperation.endOperation();        
+        this.endOfOperation.endOperation();
         process.stdin.resume();
       })
   }

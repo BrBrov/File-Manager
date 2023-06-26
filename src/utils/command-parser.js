@@ -30,6 +30,10 @@ export default class CommandsParser {
       return this.emitter.emit('fileschange', stringArrLine);
     }
 
+    if (allCommands.archive.includes(stringArrLine[0])) {
+      return this.emitter.emit('archive', stringArrLine);
+    }
+
     this.#outputError('Invalid input!');
   }
 

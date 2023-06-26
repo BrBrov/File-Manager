@@ -4,6 +4,7 @@ import FSNavigation from './navigation.js';
 import Hash from './hash.js';
 import FileOperation from './file-operation.js';
 import CommandParser from '../utils/command-parser.js';
+import Archive from './archive.js';
 
 class EventCommandInterface extends EventEmitter {}
 
@@ -19,7 +20,7 @@ export default class EventCommander {
     this.emitter.on('fileschange', (commandLine) => new FileOperation(this.osInfo).processCommand(commandLine));
     this.emitter.on('information', (commandLine) => new OSInformation(this.osInfo).processCommand(commandLine));
     this.emitter.on('hash', (commandLine) => new Hash(this.osInfo).processCommand(commandLine));
-    this.emitter.on('archive', (commandLine) => console.log(commandLine));
+    this.emitter.on('archive', (commandLine) => new Archive(this.osInfo).processCommand(commandLine));
     this.emitter.on('oncommand', (commandLine) => new CommandParser(commandLine, this.emitter, this.osInfo));
   }
 
