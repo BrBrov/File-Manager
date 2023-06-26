@@ -1,20 +1,20 @@
 export default class ShowProcessing {
   #timer
-  #conter
-  #seconds = 0;
+  #conter = 0
+  #seconds = 0.0
 
   start() {
     process.stdout.write(`\nProcessing... ${this.#seconds}s`);
 
     this.#timer = setInterval(() => {
-      if(this.#conter < 1200000) {
-        this.#seconds += 0.001;
+      if(this.#conter < 12000) {
+        this.#seconds += 0.1;
         this.#conter += 1;
         this.#showProcess();
       } else {
         clearInterval(this.#timer);
       }
-    }, 1);
+    }, 100);
   }
 
   stop() {
@@ -24,7 +24,7 @@ export default class ShowProcessing {
   }
 
   #showProcess() {
-    process.stdout.write('\r                    ');
-    process.stdout.write(`Processing... ${this.#seconds}s`);
+    process.stdout.write('\r                               ');
+    process.stdout.write(`Processing... ${Math.trunc(this.#seconds * 10)/10}s`);
   }
 }

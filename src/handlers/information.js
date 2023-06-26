@@ -36,7 +36,7 @@ export default class OSInformation {
     this.state.cpus.forEach((info, index) => {
       const infoOfOneCore = {
         model: info.model,
-        speed: info.speed
+        speed: `${info.speed / 1000}GHz`
       }
       cpusInfo[`core ${index + 1}`] = infoOfOneCore;
     });

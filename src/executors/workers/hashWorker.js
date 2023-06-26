@@ -20,4 +20,3 @@ class HashWorker {
   }
 }
 const hash = new HashWorker(workerData);
-

@@ -18,7 +18,7 @@ export default class CommandsParser {
     const stringArrLine = commandLine.split(' ');
 
 
-    if (stringArrLine.length === 0 || !stringArrLine[0]) return this.#outputError('Command line is empty! Enter your command or enter help to look at commands cheatsheet.');
+    if (stringArrLine.length === 0 || !stringArrLine[0]) return this.#outputError('Invalid input.\nCommand line is empty!');
 
     // console.log(stringArrLine);
     //TODO: delete it after dev!
@@ -39,7 +39,7 @@ export default class CommandsParser {
       return this.emitter.emit('fileschange', stringArrLine);
     }
 
-    this.#outputError('Entered command is wrong!');
+    this.#outputError('INvalid input!');
   }
 
   #outputError(stringError) {

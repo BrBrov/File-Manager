@@ -4,6 +4,7 @@ import EndOfOperation from '../utils/end-of-operation.js';
 import CatExec from '../executors/cat.js';
 import AddExec from '../executors/add.js';
 import RnExec from '../executors/rn.js';
+import CpExec from '../executors/cp.js';
 
 export default class FileOperation extends CommanderInterface {
   constructor(osInfo) {
@@ -21,11 +22,10 @@ export default class FileOperation extends CommanderInterface {
         new AddExec(this.state, commandLine);
         break;
       case 'rn':
-        //TODO: rename
         new RnExec(commandLine, this.state);
         break;
       case 'cp':
-        //TODO: copy file
+        new CpExec(commandLine, this.state);
         break;
       case 'mv':
         //TODO: move file

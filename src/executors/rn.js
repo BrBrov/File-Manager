@@ -2,7 +2,6 @@ import * as fs from 'node:fs/promises';
 import path from 'node:path';
 
 import EndOfOperation from '../utils/end-of-operation.js';
-import DeepParse from '../utils/deep-parse.js';
 
 export default class RnExec {
   constructor(commandLine, osInfo) {
