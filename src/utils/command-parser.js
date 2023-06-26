@@ -20,7 +20,8 @@ export default class CommandsParser {
 
     if (stringArrLine.length === 0 || !stringArrLine[0]) return this.#outputError('Command line is empty! Enter your command or enter help to look at commands cheatsheet.');
 
-    console.log(stringArrLine); //TODO: delete it after dev!
+    // console.log(stringArrLine);
+    //TODO: delete it after dev!
 
     if(stringArrLine[0] === 'os') {
       return this.emitter.emit('information', commandLine);
