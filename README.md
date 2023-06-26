@@ -64,7 +64,7 @@ List of operations and their syntax:
     ```
     - Rename file (content should remain unchanged): 
     ```bash
-    rn path_to_file new_filename
+    rn path_to_file "new_filename"
     ```
     - Copy file (should be done using Readable and Writable streams): 
     ```bash
